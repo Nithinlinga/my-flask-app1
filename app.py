@@ -7,21 +7,17 @@ import getpass
 
 app = Flask(__name__)
 
+@app.route('/')
+def index():
+    # Returns a greeting message on the main URL
+    return "<h1>Hello, welcome to my Codespace app!</h1>"
+
 @app.route('/htop')
 def htop():
-    # Replace with your actual full name
-    full_name = "John Doe"  
-
-    # Attempt to get the system username
+    full_name = "John Doe"  # Replace with your actual full name
     username = getpass.getuser()
-
-    # Get current time in IST (Asia/Kolkata)
     server_time_ist = datetime.now(pytz.timezone('Asia/Kolkata')).strftime("%Y-%m-%d %H:%M:%S")
-
-    # Run 'top' in batch mode (-b) for a single iteration (-n 1)
     top_output = subprocess.check_output(["top", "-b", "-n", "1"]).decode("utf-8")
-
-    # Return a simple HTML page
     return f"""
     <html>
     <head><title>/htop Endpoint</title></head>
@@ -37,5 +33,5 @@ def htop():
     """
 
 if __name__ == '__main__':
-    # Run on port 8080 by default
+    # Listen on all interfaces at port 8080
     app.run(host='0.0.0.0', port=8080)
