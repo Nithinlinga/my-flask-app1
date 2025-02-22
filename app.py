@@ -14,7 +14,7 @@ def index():
 
 @app.route('/htop')
 def htop():
-    full_name = "John Doe"  # Replace with your actual full name
+    full_name = "Linga Nithin"  # Replace with your actual full name
     username = getpass.getuser()
     server_time_ist = datetime.now(pytz.timezone('Asia/Kolkata')).strftime("%Y-%m-%d %H:%M:%S")
     top_output = subprocess.check_output(["top", "-b", "-n", "1"]).decode("utf-8")
